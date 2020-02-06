@@ -1,9 +1,3 @@
-{% macro svgIcon(name, classNames) %}
-<svg class="icon {{ classNames }}">
-  <use xlink:href="img/sprite.svg#{{ name }}"></use>
-</svg>
-{% endmacro %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,10 +6,22 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    {{ svgIcon('ico-message', 'icon--lg color--primary') }}
-    {{ svgIcon('ico-message', 'icon--md color--primary') }}
-    {{ svgIcon('ico-message', 'icon--sm color--primary') }}
+    <svg class="icon icon--lg color--primary"><use xlink:href="img/sprite.svg#ico-message"></use></svg>
+    <svg class="icon icon--md color--primary"><use xlink:href="img/sprite.svg#ico-message"></use></svg>
+    <svg class="icon icon--sm color--primary"><use xlink:href="img/sprite.svg#ico-message"></use></svg>
     <br>
+
+    <svg class="icon icon--lg color--danger"><use xlink:href="img/sprite.svg#ico-waku"></use></svg>
+    <svg class="icon icon--lg color--info"><use xlink:href="img/sprite.svg#ico-waku"></use></svg>
+    <br>
+
+    {# Render SVG Function #}
+    {% macro svgIcon(name, classNames) %}
+    <svg class="icon {{ classNames }}">
+      <use xlink:href="img/sprite.svg#{{ name }}"></use>
+    </svg>
+    {% endmacro %}
+
     {{ svgIcon('ico-place', 'icon--lg color--danger') }}
     {{ svgIcon('ico-place', 'icon--lg color--warning') }}
     {{ svgIcon('ico-place', 'icon--lg color--info') }}

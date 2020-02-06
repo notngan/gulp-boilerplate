@@ -12,7 +12,7 @@ const browserSync = require('browser-sync').create()
 const babelify = require('babelify')
 
 // plugins for build
-const del = require('del')
+const rimraf = require('rimraf')
 const cleanCss = require('gulp-clean-css')
 const sourcemaps = require('gulp-sourcemaps')
 const uglify = require('gulp-uglify')
@@ -42,10 +42,8 @@ const html = done => {
 const scss = done => {
   gulp.src(`${srcDir}scss/**/*.scss`)
     .pipe(plumber())
-    .pipe(sourcemaps.init())
     .pipe(scssLint({ 'config': '.scss-lint.yml' }))
-    .pipe(sass())
-    .on('error', err => { console.log(err) })
+    .pipe(sass()).on('error', err => { console.log(err) })
     .pipe(autoprefixer())
     .pipe(gulp.dest(`${watchDir}css/`))
     .pipe(browserSync.stream({ match: '**/*.css' }))
@@ -106,11 +104,12 @@ const svgSpriteBuild = done => {
 		.pipe(replace('&gt;', '>'))
     // build svg sprite
     .pipe(svgSprite(svgSpriteConfig))
-    .pipe(gulp.dest(`${srcDir}img/`))
+    .pipe(gulp.dest(`${watchDir}img/`))
+    .pipe(browserSync.stream({ once: true }));
   done()
 }
 
-// *** WATCH & RUN TASKS ***
+// *** WATCH FILES & RUN TASKS ***
 const browserSyncInit = done => {
   browserSync.init({
     server: {
@@ -123,18 +122,17 @@ const browserSyncInit = done => {
 }
 
 const watchFiles = () => {
-  gulp.watch([`${srcDir}html/**/*.html`], gulp.series(html))
+  gulp.watch(`${srcDir}html/**/*.html`, gulp.series(html))
   gulp.watch(`${srcDir}scss/**/*.scss`, gulp.series(scss))
   gulp.watch(`${srcDir}js/**/*.js`, gulp.series(js))
-  gulp.watch(`${srcDir}img/**/*`, gulp.series(img))
-  gulp.watch(`${srcDir}img/ico/*.svg`, gulp.series(svgSpriteBuild))
+  gulp.watch(`${srcDir}img/**/*.(png|jpg|jpeg)`, gulp.series(img))
+  gulp.watch(`${srcDir}img/**/*.svg`, gulp.parallel(svgSpriteBuild, img))
 }
 
 // *** BUILD FINAL PUBLIC ***
 // clean public folder
 const cleanPublicDir = done => {
-  del(`${publicDir}*`)
-  done()
+  return rimraf(`${publicDir}*`, done)
 }
 
 //minify img
@@ -176,10 +174,11 @@ const jsBuild = done => {
 const cssBuild = done => {
   gulp.src(`${watchDir}css/**/*.css`)
     .pipe(cleanCss())
+    .pipe(sourcemaps.init())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(`${publicDir}css/`))
   done()
 }
 
-exports.default = gulp.series(svgSpriteBuild, gulp.parallel(watchFiles, browserSyncInit))
+exports.default = gulp.series(svgSpriteBuild, gulp.parallel(html, js, scss, img, watchFiles, browserSyncInit))
 exports.build = gulp.series(cleanPublicDir, gulp.parallel(imgBuild, htmlBuild, jsBuild, cssBuild, copySprite))

@@ -20,7 +20,6 @@
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.5",
     "browserify": "^16.2.3",
-    "del": "^4.1.1",
     "gulp": "^4.0.1",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-cheerio": "^1.0.0",
@@ -40,10 +39,10 @@
     "imagemin-pngquant": "^8.0.0",
     "node-sass": "^4.12.0",
     "plumber": "^0.4.8",
+    "rimraf": "^3.0.1",
     "run-sequence": "^2.2.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "vinyl-transform": "^1.0.0",
     "watchify": "^3.11.1"
   }
 }
