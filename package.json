@@ -4,9 +4,8 @@
   "description": "Medium-like SCSS boilerplate for further markup projects.",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
     "start": "gulp",
-    "clean": "gulp clean"
+    "build": "gulp build"
   },
   "author": "Ngan B. Nguyen",
   "license": "ISC",
@@ -24,18 +23,27 @@
     "del": "^4.1.1",
     "gulp": "^4.0.1",
     "gulp-autoprefixer": "^6.1.0",
+    "gulp-cheerio": "^1.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-exit": "^0.0.2",
+    "gulp-imagemin": "^7.1.0",
     "gulp-nunjucks": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-replace": "^1.0.0",
     "gulp-ruby-sass": "^4.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-scss-lint": "^1.0.0",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-svgmin": "^2.2.0",
     "gulp-uglify": "^3.0.2",
+    "imagemin-pngquant": "^8.0.0",
     "node-sass": "^4.12.0",
+    "plumber": "^0.4.8",
     "run-sequence": "^2.2.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
+    "vinyl-transform": "^1.0.0",
     "watchify": "^3.11.1"
   }
 }
