@@ -3,19 +3,19 @@ A Gulp boilerplate that supports Nunjucks, SCSS, modern JS, SVG sprites.
 
 ## Get started
 
-1. Install gulp globally
+#### 1. Install gulp globally
 
 ```
 npm install gulp -g 
 ```
 
-2. Install packages
+#### 2. Install packages
 
 ```
 npm install
 ```
 
-3. Watch files for development
+#### 3. Watch files for development
 ```
 gulp
 ```
@@ -25,7 +25,7 @@ npm run start
 ```
 _Edit files in `src` folder, see result in `dist` folder_
 
-4. Build for production
+#### 4. Build for production
 
 ```
 gulp build
