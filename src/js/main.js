@@ -1,7 +1,7 @@
 import { lazyLoad } from './modules/lazy-load'
 
 document.addEventListener('DOMContentLoaded', function() {
-  // supports svg external content (svg sprites) to all browsers > IE8
+  // polyfill supports svg external content (svg sprites) to browsers > IE8
   svg4everybody()
 
   const greet = () => new Promise((resolve, reject) => {

@@ -8,8 +8,8 @@ const autoprefixer = require('gulp-autoprefixer')
 const sourceStream = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
 const browserify = require('browserify')
-const browserSync = require('browser-sync').create()
 const babelify = require('babelify')
+const browserSync = require('browser-sync').create()
 
 // plugins for build
 const rimraf = require('rimraf')

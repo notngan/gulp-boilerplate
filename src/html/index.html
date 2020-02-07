@@ -4,31 +4,44 @@
     <meta charset="utf-8">
     <title>Medium-like SCSS Boilerplate</title>
     <link rel="stylesheet" href="css/main.css">
+
+    {# preload for better perfomance #}
+    <link rel="preload" href="img/sprite.svg" as="image">
   </head>
   <body>
+    {# normal way #}
+    {# <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+      <path fill="#666" fill-rule="evenodd" d="M8.667 8c0 .18-.074.347-.194.473L5.807 11.14a.683.683 0 0 1-.474.193.683.683 0 0 1-.473-.193.672.672 0 0 1 0-.947l2.473-2.466V3.333c0-.366.3-.666.667-.666.367 0 .667.3.667.666V8zM8 1.333A6.67 6.67 0 0 0 1.333 8 6.67 6.67 0 0 0 8 14.667 6.67 6.67 0 0 0 14.667 8 6.67 6.67 0 0 0 8 1.333z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+      <path fill="#666" fill-rule="evenodd" d="M8.667 8c0 .18-.074.347-.194.473L5.807 11.14a.683.683 0 0 1-.474.193.683.683 0 0 1-.473-.193.672.672 0 0 1 0-.947l2.473-2.466V3.333c0-.366.3-.666.667-.666.367 0 .667.3.667.666V8zM8 1.333A6.67 6.67 0 0 0 1.333 8 6.67 6.67 0 0 0 8 14.667 6.67 6.67 0 0 0 14.667 8 6.67 6.67 0 0 0 8 1.333z"/>
+    </svg> #}
+
+
+
+    {# with svg sprite #}
     <svg class="icon icon--lg color--primary"><use xlink:href="img/sprite.svg#ico-message"></use></svg>
     <svg class="icon icon--md color--primary"><use xlink:href="img/sprite.svg#ico-message"></use></svg>
     <svg class="icon icon--sm color--primary"><use xlink:href="img/sprite.svg#ico-message"></use></svg>
-    <br>
+    <hr>
 
     <svg class="icon icon--lg color--danger"><use xlink:href="img/sprite.svg#ico-waku"></use></svg>
     <svg class="icon icon--lg color--info"><use xlink:href="img/sprite.svg#ico-waku"></use></svg>
-    <br>
+    <hr>
 
-    {# Render SVG Function #}
-    {% macro svgIcon(name, classNames) %}
-    <svg class="icon {{ classNames }}">
+
+
+    {# helper function to render svg #}
+    {% macro svgIcon(name, size, color, classes = '') %}
+    <svg class="icon icon--{{ size }} color--{{ color }} {{ classes }}">
       <use xlink:href="img/sprite.svg#{{ name }}"></use>
     </svg>
     {% endmacro %}
 
-    {{ svgIcon('ico-place', 'icon--lg color--danger') }}
-    {{ svgIcon('ico-place', 'icon--lg color--warning') }}
-    {{ svgIcon('ico-place', 'icon--lg color--info') }}
+    {{ svgIcon('ico-place', 'lg', 'danger') }}
+    {{ svgIcon('ico-place', 'lg', 'warning') }}
+    {{ svgIcon('ico-place', 'lg', 'info') }}
     <br>
-    {{ svgIcon('ico-flag', 'icon--md color--info') }}
-    {{ svgIcon('ico-house', 'icon--md color--info') }}
-    {{ svgIcon('ico-clock', 'icon--md color--info') }}
 
     <script src="js/lib/svg4everybody.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
