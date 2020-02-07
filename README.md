@@ -1,4 +1,4 @@
-# Github-like Gulp Boilerplate
+# Gulp Boilerplate
 A Gulp boilerplate that supports Nunjucks, SCSS, modern JS, SVG sprites.
 
 ## Get started
