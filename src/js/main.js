@@ -1,8 +1,13 @@
 import { lazyLoad } from './modules/lazy-load'
 
-const greet = () => new Promise((resolve, reject) => {
-  setTimeout(() => resolve('promising greeting!'), 1000)
-})
+document.addEventListener('DOMContentLoaded', function() {
+  // supports svg external content (svg sprites) to all browsers > IE8
+  svg4everybody()
 
-greet().then(res => console.log(res))
-lazyLoad().then(res => console.log(res))
+  const greet = () => new Promise((resolve, reject) => {
+    setTimeout(() => resolve('promising greeting!'), 1000)
+  })
+
+  greet().then(res => console.log(res))
+  lazyLoad().then(res => console.log(res))
+})

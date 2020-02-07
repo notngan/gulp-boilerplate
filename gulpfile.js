@@ -58,7 +58,13 @@ const js = done => {
     .pipe(buffer())
     .pipe(plumber())
     .pipe(gulp.dest(`${watchDir}js/`))
-    .pipe(browserSync.stream({ once: true }));
+    .pipe(browserSync.stream({ once: true }))
+
+  // load library files
+  gulp.src(`${srcDir}js/lib/*.js`)
+    .pipe(gulp.dest(`${watchDir}js/lib/`))
+    .pipe(browserSync.stream({ once: true }))
+
   done()
 }
 
